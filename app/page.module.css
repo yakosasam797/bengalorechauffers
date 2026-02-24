@@ -315,70 +315,126 @@
 
 /* ═══ HOW IT WORKS ═══ */
 .howSection {
-    padding: var(--space-4xl) 0;
-    background: var(--white);
+    padding: var(--space-3xl) 0;
+    background: var(--gray-50);
 }
 
-.stepsGrid {
+/* ═══ HOW IT WORKS — Two Column Layout ═══ */
+.howLayout {
     display: grid;
     grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+.howLeft {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.howTitle {
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.howDesc {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 300px;
+    margin: 0;
+}
+
+.howRight {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.howStep {
+    display: flex;
+    align-items: center;
     gap: var(--space-lg);
-}
-
-.stepCard {
-    text-align: center;
-    padding: var(--space-xl) var(--space-lg);
-    background: var(--gray-50);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--white);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
+    border: none;
 }
 
-.stepIcon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+.howStep:first-child {
+    padding-top: var(--space-lg);
+}
+
+.howStep:last-child {
+    padding-bottom: var(--space-lg);
+}
+
+.howStepIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     background: var(--brand-light);
     color: var(--brand-hover);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto var(--space-sm);
+    flex-shrink: 0;
 }
 
-.stepNum {
-    display: inline-block;
-    font-size: var(--fs-overline);
-    font-weight: 800;
-    color: var(--brand);
-    background: var(--brand-light);
-    padding: 2px 10px;
-    border-radius: var(--radius-full);
-    margin-bottom: var(--space-xs);
-    letter-spacing: 1px;
+.howStepText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.stepTitle {
-    font-size: var(--fs-h3);
+.howStepTitle {
+    font-size: var(--fs-body);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--space-xs);
+    margin: 0;
 }
 
-.stepDesc {
+.howStepDesc {
     font-size: var(--fs-sm);
     color: var(--text-secondary);
     line-height: 1.6;
-    max-width: 280px;
-    margin: 0 auto;
+    margin: 0;
 }
 
-@media (min-width: 768px) {
-    .stepsGrid {
-        grid-template-columns: repeat(3, 1fr);
+@media (min-width: 900px) {
+    .howLayout {
+        grid-template-columns: 0.85fr 1.4fr;
+        gap: var(--space-3xl);
+        align-items: start;
+    }
+
+    .howLeft {
+        position: sticky;
+        top: 90px;
     }
 
     .howSection {
-        padding: var(--space-5xl) 0;
+        padding: var(--space-4xl) 0;
+    }
+}
+
+
+/* ═══ WHY US ═══ */
+.whyUsSection {
+    padding: var(--space-3xl) 0;
+    background: var(--white);
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .whyUsSection {
+        padding: var(--space-4xl) 0;
     }
 }
 
@@ -495,15 +551,14 @@
 }
 
 .reviewCard {
-    background: var(--white);
-    border: 1px solid var(--border);
+    background: var(--gray-50);
+    border: none;
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     transition: all var(--ease);
 }
 
 .reviewCard:hover {
-    border-color: var(--gray-300);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -608,5 +663,569 @@
 @media (min-width: 768px) {
     .cta {
         padding: var(--space-5xl) 0;
+    }
+}
+
+
+/* ═══ SERVICE CATEGORIES — Two Cards ═══ */
+.serviceCatSection {
+    padding: var(--space-3xl) 0;
+    background: var(--gray-50);
+}
+
+.serviceCatHeader {
+    text-align: left;
+    max-width: 520px;
+    margin: 0 0 var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.serviceCatHeading {
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin: 0;
+    line-height: 1.15;
+}
+
+.serviceCatSubtitle {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.serviceCatGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.serviceCatCard {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCatCard:hover {
+    transform: translateY(-4px);
+}
+
+.serviceCatBg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCatCard:hover .serviceCatBg {
+    transform: scale(1.04);
+}
+
+.serviceCatOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(10, 30, 10, 0.15) 0%,
+            rgba(5, 35, 15, 0.75) 50%,
+            rgba(5, 25, 10, 0.95) 100%);
+}
+
+.serviceCatCardDark .serviceCatOverlay {
+    background: linear-gradient(180deg,
+            rgba(10, 10, 10, 0.15) 0%,
+            rgba(10, 10, 10, 0.72) 50%,
+            rgba(10, 10, 10, 0.95) 100%);
+}
+
+.serviceCatContent {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-2xl) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.serviceCatLabel {
+    display: inline-block;
+    font-size: var(--fs-overline);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: rgba(247, 201, 72, 0.12);
+    border: 1px solid rgba(247, 201, 72, 0.25);
+    border-radius: var(--radius-full);
+    padding: 5px 14px;
+    width: fit-content;
+}
+
+.serviceCatTitle {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.serviceCatDesc {
+    font-size: var(--fs-sm);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+    max-width: 400px;
+    margin: 0;
+}
+
+.serviceCatCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.3px;
+    transition: gap 0.2s ease;
+}
+
+.serviceCatCard:hover .serviceCatCta {
+    gap: 14px;
+}
+
+@media (min-width: 768px) {
+    .serviceCatGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+
+    .serviceCatCard {
+        min-height: 440px;
+    }
+
+    .serviceCatSection {
+        padding: var(--space-5xl) 0;
+    }
+}
+
+
+/* ═══ VEHICLE SELECTION — Horizontal Scroll Cards ═══ */
+.vehicleSection {
+    padding: var(--space-3xl) 0 0;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.vehicleHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.vehicleHeaderLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.vehicleTitle {
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.vehicleSubtitle {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0;
+}
+
+.vehicleNav {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    padding-bottom: 4px;
+}
+
+.vehicleNavBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.vehicleNavBtn:hover,
+.vehicleNavBtnActive {
+    background: var(--dark);
+    color: var(--white);
+    border-color: var(--dark);
+}
+
+/* Wrapper breaks out of container to the right viewport edge */
+.vehicleTrackWrap {
+    margin-right: calc(-1 * var(--space-lg));
+    overflow: visible;
+}
+
+@media (min-width: 768px) {
+    .vehicleTrackWrap {
+        margin-right: calc(-1 * var(--space-xl));
+    }
+}
+
+@media (min-width: 1200px) {
+    .vehicleTrackWrap {
+        margin-right: calc(-1 * ((100vw - 1160px) / 2 + var(--space-xl)));
+    }
+}
+
+.vehicleTrack {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: var(--space-2xl);
+    padding-top: 4px;
+    padding-right: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .vehicleTrack {
+        padding-right: var(--space-xl);
+    }
+}
+
+@media (min-width: 1200px) {
+    .vehicleTrack {
+        padding-right: calc((100vw - 1160px) / 2 + var(--space-xl));
+    }
+}
+
+.vehicleTrack::-webkit-scrollbar {
+    display: none;
+}
+
+.vehicleTrackPad {
+    display: none;
+}
+
+.vehicleCard {
+    flex-shrink: 0;
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--gray-50);
+    border: none;
+    scroll-snap-align: start;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease;
+    cursor: pointer;
+}
+
+.vehicleCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.vehicleCard:hover .vehicleCardArrow {
+    background: var(--dark);
+    color: var(--white);
+    border-color: transparent;
+}
+
+.vehicleCardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-lg) 0;
+    gap: var(--space-sm);
+}
+
+.vehicleCardTitle {
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin: 0;
+    flex: 1;
+}
+
+.vehicleCardArrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: all 0.22s ease;
+}
+
+.vehicleCardImageWrap {
+    flex: 1;
+    min-height: 190px;
+    max-height: 220px;
+    overflow: hidden;
+    margin: var(--space-md) 0 0;
+}
+
+.vehicleCardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.vehicleCard:hover .vehicleCardImage {
+    transform: scale(1.05);
+}
+
+.vehicleCardBottom {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vehicleCardDesc {
+    font-size: var(--fs-xs);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.vehicleCardPrice {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--brand-hover);
+    background: var(--brand-light);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+}
+
+@media (min-width: 768px) {
+    .vehicleSection {
+        padding: var(--space-5xl) 0 0;
+    }
+
+    .vehicleCard {
+        width: 340px;
+    }
+
+    .vehicleCardImageWrap {
+        min-height: 220px;
+        max-height: 260px;
+    }
+}
+
+
+
+@media (min-width: 1024px) {
+    .bentoSection {
+        padding: var(--space-5xl) 0;
+    }
+
+    /* 
+     * Desktop bento layout:
+     * Row 1: [big - col 1-2] [small col 3]
+     * Row 2: [small col 1] [small col 2] [big - row 2 extends]
+     * This creates the asymmetric bento feel
+     */
+    .bentoGrid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+        gap: var(--space-md);
+    }
+
+    .bentoCard {
+        min-height: 300px;
+    }
+
+    /* Item 1 — Hatchback: spans 2 cols, taller */
+    .bentoGrid .bentoCard:nth-child(1) {
+        grid-column: span 2;
+        min-height: 380px;
+    }
+
+    /* Item 5 — Outstation: spans 2 cols */
+    .bentoGrid .bentoCard:nth-child(5) {
+        grid-column: span 2;
+        min-height: 340px;
+    }
+}
+
+
+/* ═══ CTA BANNER — Contained Rounded Card ═══ */
+.ctaBannerSection {
+    padding: var(--space-3xl) 0;
+    background: var(--white);
+}
+
+.ctaBannerCard {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--dark);
+    padding: var(--space-2xl);
+    border: none;
+}
+
+.ctaBannerGlow {
+    display: none;
+}
+
+.ctaBannerInner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    align-items: flex-start;
+}
+
+.ctaBannerText {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ctaBannerLabel {
+    display: inline-block;
+    font-size: var(--fs-overline);
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--brand);
+    width: fit-content;
+}
+
+.ctaBannerTitle {
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.ctaBannerDesc {
+    font-size: var(--fs-sm);
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0;
+}
+
+.ctaBannerActions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+    max-width: 300px;
+}
+
+.ctaBannerWhatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 24px;
+    background: rgba(37, 211, 102, 0.1);
+    color: #25D366;
+    border: 1.5px solid rgba(37, 211, 102, 0.25);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    transition: all var(--ease);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ctaBannerWhatsapp:hover {
+    background: rgba(37, 211, 102, 0.18);
+    border-color: rgba(37, 211, 102, 0.5);
+}
+
+@media (min-width: 640px) {
+    .ctaBannerActions {
+        flex-direction: row;
+        max-width: none;
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .ctaBannerSection {
+        padding: var(--space-4xl) 0;
+    }
+
+    .ctaBannerCard {
+        padding: var(--space-3xl) var(--space-2xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .ctaBannerCard {
+        padding: var(--space-3xl);
+    }
+
+    .ctaBannerInner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3xl);
+    }
+
+    .ctaBannerText {
+        flex: 1;
+        max-width: 480px;
+    }
+
+    .ctaBannerActions {
+        flex-shrink: 0;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 200px;
     }
 }

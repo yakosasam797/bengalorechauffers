@@ -1,6 +1,6 @@
+/* FAQ Accordion — full-width, aligned with section title */
 .accordion {
-    max-width: 680px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .item {
@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    padding: var(--space-lg) 0;
+    padding: var(--space-xl) 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -63,11 +63,12 @@
 }
 
 .answer {
-    padding-bottom: var(--space-lg);
+    padding-bottom: var(--space-xl);
 }
 
 .answer p {
     font-size: var(--fs-sm);
     color: var(--text-secondary);
     line-height: 1.7;
+    max-width: 600px;
 }

@@ -1,4 +1,5 @@
 'use client';
+import { useRef } from 'react';
 import Link from 'next/link';
 import BookingForm from './components/BookingForm';
 import FeatureCard from './components/FeatureCard';
@@ -6,6 +7,45 @@ import FAQAccordion from './components/FAQAccordion';
 import StatsCounter from './components/StatsCounter';
 import ScrollReveal from './components/ScrollReveal';
 import styles from './page.module.css';
+
+/* ── Bento Grid Vehicle Data (no Corporate Fleet) ── */
+const bentoVehicles = [
+    {
+        title: 'Hatchback Driver',
+        desc: 'Daily commute, school pickups, errands around Bangalore.',
+        image: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80',
+        price: 'From ₹149/hr',
+        size: 'large',
+    },
+    {
+        title: 'Sedan Driver',
+        desc: 'Airport pickups, client meetings, long-distance drives.',
+        image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80',
+        price: 'From ₹149/hr',
+        size: 'small',
+    },
+    {
+        title: 'SUV Driver',
+        desc: 'Family trips, weekend getaways, outstation highways.',
+        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80',
+        price: 'From ₹199/hr',
+        size: 'small',
+    },
+    {
+        title: 'Luxury Chauffeur',
+        desc: 'BMW, Mercedes, Audi — handled with premium care.',
+        image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80',
+        price: 'From ₹299/hr',
+        size: 'small',
+    },
+    {
+        title: 'Outstation Trips',
+        desc: 'Coorg, Ooty, Goa — safe, smooth long-distance drives.',
+        image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80',
+        price: 'From ₹1,499/day',
+        size: 'large',
+    },
+];
 
 /* ── Services Data — with IMAGES ── */
 const services = [
@@ -115,6 +155,10 @@ function StarRating({ rating }) {
 }
 
 export default function Home() {
+    const vehicleScroll = useRef(null);
+    const scrollVehicles = (dir) => {
+        if (vehicleScroll.current) vehicleScroll.current.scrollBy({ left: dir * 330, behavior: 'smooth' });
+    };
     return (
         <>
             {/* ═══ HERO ═══ */}
@@ -160,38 +204,99 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ SERVICES — IMAGE CARDS ═══ */}
-            <section className={styles.servicesSection}>
+            {/* ═══ SERVICE CATEGORIES — Two Cards ═══ */}
+            <section className={styles.serviceCatSection}>
                 <div className="container">
                     <ScrollReveal>
-                        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                            <span className="section-label">What We Offer</span>
-                            <h2 className="section-title">Pick Your Vehicle. We'll Send the Driver.</h2>
-                            <p className="section-subtitle">Tell us what you drive — we'll match you with a professional chauffeur trained for your exact vehicle type.</p>
+                        <div className={styles.serviceCatHeader}>
+                            <span className="section-label">Our Services</span>
+                            <h2 className={styles.serviceCatHeading}>Two Ways to<br />Ride with Us</h2>
+                            <p className={styles.serviceCatSubtitle}>Whether you need a chauffeur for your personal car or a dedicated fleet for your business — we have you covered, end to end.</p>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
-                        <div className={styles.serviceGrid}>
-                            {services.map((s, i) => (
-                                <Link href="/contact" key={i} className={styles.serviceCard}>
-                                    <div className={styles.serviceImageWrap}>
-                                        <img src={s.image} alt={s.title} className={styles.serviceImage} loading="lazy" />
-                                        <div className={styles.serviceOverlay}></div>
-                                        <span className={styles.servicePrice}>{s.price}</span>
-                                    </div>
-                                    <div className={styles.serviceBody}>
-                                        <h3 className={styles.serviceTitle}>{s.title}</h3>
-                                        <p className={styles.serviceDesc}>{s.desc}</p>
-                                        <span className={styles.serviceArrow}>Hire Driver →</span>
-                                    </div>
-                                </Link>
-                            ))}
+                        <div className={styles.serviceCatGrid}>
+                            {/* Card 1 — Personal Driver */}
+                            <Link href="/contact" className={styles.serviceCatCard}>
+                                <div className={styles.serviceCatBg} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1550355291-bbee04a92027?w=900&q=80')` }}></div>
+                                <div className={styles.serviceCatOverlay}></div>
+                                <div className={styles.serviceCatContent}>
+                                    <span className={styles.serviceCatLabel}>For Individuals</span>
+                                    <h2 className={styles.serviceCatTitle}>Need a Driver?</h2>
+                                    <p className={styles.serviceCatDesc}>
+                                        Book a professional, background-verified chauffeur for your personal car — hourly, full day, or monthly.
+                                    </p>
+                                    <span className={styles.serviceCatCta}>
+                                        Book a Driver
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </span>
+                                </div>
+                            </Link>
+
+                            {/* Card 2 — Corporate Fleet */}
+                            <Link href="/contact" className={`${styles.serviceCatCard} ${styles.serviceCatCardDark}`}>
+                                <div className={styles.serviceCatBg} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=80')` }}></div>
+                                <div className={styles.serviceCatOverlay}></div>
+                                <div className={styles.serviceCatContent}>
+                                    <span className={styles.serviceCatLabel}>For Corporates</span>
+                                    <h2 className={styles.serviceCatTitle}>Corporate Fleet?</h2>
+                                    <p className={styles.serviceCatDesc}>
+                                        Dedicated drivers for your entire fleet — 5, 10, or 50+ vehicles. Managed, uniformed, and reliable.
+                                    </p>
+                                    <span className={styles.serviceCatCta}>
+                                        Get Fleet Plan
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </span>
+                                </div>
+                            </Link>
                         </div>
                     </ScrollReveal>
                 </div>
             </section>
 
-            {/* ═══ STATS — right after services ═══ */}
+            {/* ═══ VEHICLE SELECTION — Horizontal Scroll (Image 1 style) ═══ */}
+            <section className={styles.vehicleSection}>
+                <div className="container">
+                    <div className={styles.vehicleHeader}>
+                        <div className={styles.vehicleHeaderLeft}>
+                            <span className="section-label">Pick Your Vehicle</span>
+                            <h2 className={styles.vehicleTitle}>A Driver for Every Car</h2>
+                            <p className={styles.vehicleSubtitle}>Tell us what you drive — we'll match you with a trained chauffeur for your exact vehicle type.</p>
+                        </div>
+                        <div className={styles.vehicleNav}>
+                            <button className={styles.vehicleNavBtn} onClick={() => scrollVehicles(-1)} aria-label="Previous">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
+                            </button>
+                            <button className={`${styles.vehicleNavBtn} ${styles.vehicleNavBtnActive}`} onClick={() => scrollVehicles(1)} aria-label="Next">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div className={styles.vehicleTrackWrap}>
+                        <div className={styles.vehicleTrack} ref={vehicleScroll}>
+                            {bentoVehicles.map((v, i) => (
+                                <Link href="/contact" key={i} className={styles.vehicleCard}>
+                                    <div className={styles.vehicleCardTop}>
+                                        <h3 className={styles.vehicleCardTitle}>{v.title}</h3>
+                                        <span className={styles.vehicleCardArrow}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M7 7h10v10" /></svg>
+                                        </span>
+                                    </div>
+                                    <div className={styles.vehicleCardImageWrap}>
+                                        <img src={v.image} alt={v.title} className={styles.vehicleCardImage} loading="lazy" />
+                                    </div>
+                                    <div className={styles.vehicleCardBottom}>
+                                        <p className={styles.vehicleCardDesc}>{v.desc}</p>
+                                        <span className={styles.vehicleCardPrice}>{v.price}</span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ STATS — right after vehicle section ═══ */}
             <section className={styles.statsSection}>
                 <div className={styles.statsPattern}></div>
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -199,39 +304,64 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ HOW IT WORKS ═══ */}
-            <section className={styles.howSection}>
+            {/* ═══ CTA BANNER — Contained Rounded Card ═══ */}
+            <section className={styles.ctaBannerSection}>
                 <div className="container">
                     <ScrollReveal>
-                        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                            <span className="section-label">How It Works</span>
-                            <h2 className="section-title">3 Steps. That's It.</h2>
-                            <p className="section-subtitle">No app download, no registration needed. Just tell us and we'll handle the rest.</p>
+                        <div className={styles.ctaBannerCard}>
+                            <div className={styles.ctaBannerGlow}></div>
+                            <div className={styles.ctaBannerInner}>
+                                <div className={styles.ctaBannerText}>
+                                    <span className={styles.ctaBannerLabel}>Get Started Today</span>
+                                    <h2 className={styles.ctaBannerTitle}>Your Driver,<br />Ready in Minutes.</h2>
+                                    <p className={styles.ctaBannerDesc}>No app download. No registration. Just call or WhatsApp — we'll handle the rest.</p>
+                                </div>
+                                <div className={styles.ctaBannerActions}>
+                                    <Link href="/contact" className="btn btn-brand">Book a Driver</Link>
+                                    <a href="https://wa.me/919164544555" target="_blank" rel="noopener noreferrer" className="btn btn-white">WhatsApp Us</a>
+                                </div>
+                            </div>
                         </div>
                     </ScrollReveal>
-                    <div className={styles.stepsGrid}>
-                        {steps.map((step, i) => (
-                            <ScrollReveal key={i} delay={i * 120}>
-                                <div className={styles.stepCard}>
-                                    <div className={styles.stepIcon}>{step.icon}</div>
-                                    <div className={styles.stepNum}>{step.num}</div>
-                                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                                    <p className={styles.stepDesc}>{step.desc}</p>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                </div>
+            </section>
+
+            {/* ═══ HOW IT WORKS — Two Column (Image 2 layout) ═══ */}
+            <section className={styles.howSection}>
+                <div className="container">
+                    <div className={styles.howLayout}>
+                        <ScrollReveal>
+                            <div className={styles.howLeft}>
+                                <span className="section-label">How It Works</span>
+                                <h2 className={styles.howTitle}>3 Steps.<br />That's It.</h2>
+                                <p className={styles.howDesc}>No app download, no registration needed. Just tell us your requirement and we'll assign a verified driver to your doorstep.</p>
+                            </div>
+                        </ScrollReveal>
+                        <div className={styles.howRight}>
+                            {steps.map((step, i) => (
+                                <ScrollReveal key={i} delay={i * 100}>
+                                    <div className={styles.howStep}>
+                                        <div className={styles.howStepIcon}>{step.icon}</div>
+                                        <div className={styles.howStepText}>
+                                            <h3 className={styles.howStepTitle}>{step.title}</h3>
+                                            <p className={styles.howStepDesc}>{step.desc}</p>
+                                        </div>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* ═══ WHY US ═══ */}
-            <section className="section">
+            <section className={styles.whyUsSection}>
                 <div className="container">
                     <ScrollReveal>
                         <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
                             <span className="section-label">Why Us</span>
-                            <h2 className="section-title">We Don't Cut Corners on Safety</h2>
-                            <p className="section-subtitle">Every driver goes through a 4-step verification before they ever sit in your car.</p>
+                            <h2 className="section-title">We Don't Cut Corners<br />on Safety</h2>
+                            <p className="section-subtitle" style={{ maxWidth: '520px', margin: '0 auto' }}>Every driver goes through a 4-step verification before they ever sit in your car.</p>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
@@ -246,9 +376,9 @@ export default function Home() {
             <section className="section-alt" id="pricing">
                 <div className="container">
                     <ScrollReveal>
-                        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
+                        <div style={{ marginBottom: 'var(--space-2xl)' }}>
                             <span className="section-label">Pricing</span>
-                            <h2 className="section-title">Honest Pricing. No Surprises.</h2>
+                            <h2 className="section-title">Honest Pricing.<br />No Surprises.</h2>
                             <p className="section-subtitle">What you see is what you pay. Pick a plan that works for you.</p>
                         </div>
                     </ScrollReveal>
@@ -285,9 +415,9 @@ export default function Home() {
             <section className="section">
                 <div className="container">
                     <ScrollReveal>
-                        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
+                        <div style={{ marginBottom: 'var(--space-2xl)' }}>
                             <span className="section-label">Real Reviews</span>
-                            <h2 className="section-title">Hear It From Our Customers</h2>
+                            <h2 className="section-title">Hear It From<br />Our Customers</h2>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
@@ -314,9 +444,9 @@ export default function Home() {
             <section className="section-alt" id="faq">
                 <div className="container">
                     <ScrollReveal>
-                        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
+                        <div style={{ marginBottom: 'var(--space-2xl)' }}>
                             <span className="section-label">FAQ</span>
-                            <h2 className="section-title">Got Questions? We've Got Answers.</h2>
+                            <h2 className="section-title">Got Questions?<br />We've Got Answers.</h2>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
