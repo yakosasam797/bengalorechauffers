@@ -1,140 +1,117 @@
 .introGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3xl);
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
     align-items: center;
 }
 
-.introText {
-    animation: fadeInUp 0.6s ease;
-}
-
-.introPara {
-    font-size: var(--fs-body);
+.para {
     color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: var(--space-md);
+    line-height: 1.75;
+    margin-bottom: var(--space-sm);
 }
 
 .introImage {
     position: relative;
-    animation: slideInRight 0.6s ease 0.2s both;
 }
 
-.imageCard {
+.img {
     width: 100%;
-    height: 400px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    height: 280px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
 }
 
-.experienceBadge {
+.badge {
     position: absolute;
-    bottom: -20px;
-    left: -20px;
-    background: var(--primary);
+    bottom: -8px;
+    left: 8px;
+    background: var(--dark);
     color: var(--text-white);
-    padding: var(--space-lg) var(--space-xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-sm);
     text-align: center;
 }
 
-.badgeNumber {
+.badgeNum {
     display: block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    line-height: 1;
-    color: var(--accent);
+    color: var(--brand);
 }
 
 .badgeText {
     font-size: var(--fs-xs);
     font-weight: 600;
+    opacity: 0.6;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.9;
 }
 
-/* Vision & Mission */
 .vmGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
 }
 
 .vmCard {
-    background: var(--card-bg);
-    border-radius: var(--radius-lg);
-    padding: var(--space-2xl);
-    box-shadow: var(--shadow-card);
-    transition: all var(--transition-base);
-    border-top: 3px solid var(--primary);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    transition: border-color var(--ease);
 }
 
 .vmCard:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card-hover);
-}
-
-.vmIcon {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
-    background: rgba(27, 77, 62, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    margin-bottom: var(--space-lg);
+    border-color: var(--gray-400);
 }
 
 .vmTitle {
     font-size: var(--fs-h3);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
 }
 
 .vmList {
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
 }
 
 .vmList li {
-    position: relative;
-    padding-left: 24px;
-    font-size: var(--fs-body);
+    font-size: var(--fs-sm);
     color: var(--text-secondary);
     line-height: 1.7;
+    padding-left: var(--space-md);
+    position: relative;
 }
 
 .vmList li::before {
-    content: '';
+    content: '—';
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
+    color: var(--brand);
+    font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .introGrid {
-        grid-template-columns: 1fr;
-        gap: var(--space-2xl);
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3xl);
     }
 
     .vmGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
     }
 
-    .experienceBadge {
-        bottom: -10px;
-        left: 10px;
+    .img {
+        height: 400px;
+    }
+
+    .badge {
+        bottom: -12px;
+        left: -12px;
     }
 }

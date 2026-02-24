@@ -1,19 +1,20 @@
 .card {
-    background: var(--card-bg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: all var(--ease);
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-card-hover);
+    border-color: var(--gray-300);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
 }
 
 .imageWrap {
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
 .image {
@@ -21,38 +22,24 @@
     height: 200px;
     background-size: cover;
     background-position: center;
-    transition: transform var(--transition-slow);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover .image {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
-.overlay {
+.imageWrap::after {
+    content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(27, 77, 62, 0.6) 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: var(--space-md);
-    opacity: 0;
-    transition: opacity var(--transition-base);
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.04) 100%);
+    transition: opacity var(--ease);
+    pointer-events: none;
 }
 
-.card:hover .overlay {
-    opacity: 1;
-}
-
-.iconBadge {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
+.card:hover .imageWrap::after {
+    background: linear-gradient(180deg, transparent 20%, rgba(26, 26, 26, 0.12) 100%);
 }
 
 .content {
@@ -60,38 +47,30 @@
 }
 
 .title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .desc {
-    font-size: var(--fs-small);
+    font-size: var(--fs-sm);
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: var(--space-md);
 }
 
 .cta {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--brand);
+    transition: all var(--ease);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: var(--fs-small);
-    font-weight: 600;
-    color: var(--primary);
-    transition: all var(--transition-fast);
+    gap: 4px;
 }
 
 .cta:hover {
-    color: var(--primary-light);
-    gap: 10px;
-}
-
-.cta svg {
-    transition: transform var(--transition-fast);
-}
-
-.cta:hover svg {
-    transform: translateX(3px);
+    color: var(--brand-hover);
+    gap: 8px;
 }

@@ -3,137 +3,80 @@ import Link from 'next/link';
 import styles from './services.module.css';
 
 export const metadata = {
-    title: 'Our Services | Bangalore Chauffeur',
-    description: 'Rent a professional driver in Bangalore for hatchbacks, sedans, SUVs, luxury cars, corporate fleets, and commercial vehicles.',
+    title: 'Our Services | Bengaluru Chauffeurs — Drivers for Every Car',
+    description: 'Hire a professional driver in Bangalore for hatchbacks, sedans, SUVs, luxury cars, corporate fleets, and commercial vehicles. Starting at ₹149/hr.',
 };
 
 const services = [
-    {
-        title: 'Hatchback Driver',
-        description: 'Perfect for daily city commutes, school drop-offs, and running errands. Our trained drivers handle compact vehicles with ease, navigating Bangalore\'s busy streets efficiently.',
-        image: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80',
-    },
-    {
-        title: 'SUV Driver',
-        description: 'Ideal for family trips, weekend getaways, and outstation drives. Experienced drivers who handle larger vehicles confidently on highways and rough terrain.',
-        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80',
-    },
-    {
-        title: 'Sedan Driver',
-        description: 'Comfortable and professional rides for business meetings, airport transfers, and leisure travel. Smooth, reliable service for your sedan.',
-        image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80',
-    },
-    {
-        title: 'Luxury Car Driver',
-        description: 'Premium chauffeur experience for VIP travel, weddings, and special occasions. Drivers trained in etiquette and luxury vehicle handling.',
-        image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80',
-    },
-    {
-        title: 'Corporate Driver',
-        description: 'Dedicated drivers for your corporate fleet. Regular schedules, professional conduct, and reliable service for business transportation needs.',
-        image: 'https://images.unsplash.com/photo-1449965408869-ebd3fee7460f?w=600&q=80',
-    },
-    {
-        title: 'Commercial Vehicle Driver',
-        description: 'Skilled drivers for commercial transport vehicles including Innovas, Tempo Travellers, and more. Licensed for commercial driving.',
-        image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80',
-    },
+    { title: 'Hatchback Driver', description: 'Daily office runs, school pickups, errands around the city. Our drivers know Bangalore inside out.', image: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80' },
+    { title: 'SUV Driver', description: 'Family road trips, weekend getaways, outstation drives. Highway-trained drivers who keep your family safe.', image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80' },
+    { title: 'Sedan Driver', description: 'Airport pickups, client meetings, daily commutes. Professional and punctual — always.', image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80' },
+    { title: 'Luxury Car Driver', description: 'Your BMW, Mercedes, or Audi deserves a trained chauffeur. White-glove service for premium vehicles.', image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80' },
+    { title: 'Corporate Fleet Driver', description: 'Dedicated, uniformed drivers for your company cars. We manage 5 to 50+ vehicles.', image: 'https://images.unsplash.com/photo-1449965408869-ebd3fee7460f?w=600&q=80' },
+    { title: 'Commercial Vehicle', description: 'Trained operators for Innovas, Tempo Travellers, trucks, and cargo vehicles.', image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80' },
+];
+
+const highlights = [
+    'Police-verified, background-checked drivers',
+    '24/7 availability — book anytime',
+    'Hourly, daily & monthly plans',
+    'No hidden charges, ever',
 ];
 
 export default function ServicesPage() {
     return (
         <>
-            {/* Page Hero */}
             <section className="page-hero">
-                <h1>Our Services</h1>
-                <p>Professional driver services for every type of vehicle and occasion.</p>
+                <h1>Drivers for Every Car. Every Need.</h1>
+                <p>Hatchback to luxury, city to highway — we've got the right driver.</p>
             </section>
 
-            {/* Rent A Driver Content */}
+            {/* Why Us */}
             <section className="section">
                 <div className="container">
-                    <div className={styles.rentSection}>
-                        <div className={styles.rentText}>
-                            <span className="section-label">Professional Service</span>
-                            <h2 className="section-title">Rent A Driver in Bangalore</h2>
-                            <p className={styles.rentPara}>
-                                Looking for a reliable and affordable way to rent a driver in Bangalore? We specialize in providing professional, background-verified drivers for individuals, families, and corporate clients who prefer to travel in the comfort of their own vehicle.
-                            </p>
-                            <p className={styles.rentPara}>
-                                Whether you need a driver for a few hours, a full day, or on a monthly basis, our flexible hiring options are designed to suit your schedule and budget. From daily office commutes and school drop-offs to airport transfers and long-distance outstation trips.
-                            </p>
-                            <p className={styles.rentPara}>
-                                Our drivers are trained in defensive driving, customer service, and route optimization. They handle all types of vehicles — hatchbacks, sedans, SUVs, and luxury cars — with confidence and care.
-                            </p>
-                            <div className={styles.rentFeatures}>
-                                <div className={styles.rentFeature}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                    <span>Background-verified drivers</span>
-                                </div>
-                                <div className={styles.rentFeature}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                    <span>24/7 customer support</span>
-                                </div>
-                                <div className={styles.rentFeature}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                    <span>Hourly, daily & monthly plans</span>
-                                </div>
-                                <div className={styles.rentFeature}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                    <span>Transparent, no hidden charges</span>
-                                </div>
+                    <div className={styles.rentGrid}>
+                        <div>
+                            <span className="section-label">Why Hire From Us</span>
+                            <h2 className="section-title">You Own the Car. We Bring the Driver.</h2>
+                            <p className={styles.para}>Why deal with unreliable part-time drivers when you can get a trained professional in minutes? Our drivers are background-checked, courteous, and know Bangalore roads like the back of their hand.</p>
+                            <p className={styles.para}>Book for an hour, a full day, or get a dedicated monthly driver. Flexible plans that fit your life — not the other way around.</p>
+                            <div className={styles.highlights}>
+                                {highlights.map((h, i) => (
+                                    <span key={i} className={styles.highlightItem}>✓ {h}</span>
+                                ))}
                             </div>
-                            <Link href="/contact" className="btn btn-primary" style={{ marginTop: '24px' }}>
-                                Book a Driver Now
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                            </Link>
+                            <Link href="/contact" className="btn btn-brand" style={{ marginTop: 'var(--space-lg)' }}>Book a Driver Now</Link>
                         </div>
-                        <div className={styles.rentImage}>
-                            <img
-                                src="https://images.unsplash.com/photo-1449965408869-ebd3fee7460f?w=600&q=80"
-                                alt="Professional chauffeur service"
-                                className={styles.rentImg}
-                            />
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1449965408869-ebd3fee7460f?w=600&q=80" alt="Professional chauffeur" className={styles.rentImg} />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Fleet Categories */}
-            <section className="section-alt">
+            {/* Fleet */}
+            <section className="section-alt" id="fleet">
                 <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-3xl)' }}>
-                        <span className="section-label">Fleet Categories</span>
-                        <h2 className="section-title">Find a Driver for Your Vehicle</h2>
-                        <p className="section-subtitle">
-                            Select your vehicle type below to hire an experienced, professional driver today.
-                        </p>
+                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
+                        <span className="section-label">Vehicle Categories</span>
+                        <h2 className="section-title">Pick Your Vehicle Type</h2>
+                        <p className="section-subtitle">Every driver is trained specifically for your vehicle type. No generic assignments.</p>
                     </div>
                     <div className="grid-3">
-                        {services.map((service, i) => (
-                            <ServiceCard
-                                key={i}
-                                {...service}
-                                icon={
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <rect x="1" y="3" width="15" height="13" rx="2" /><path d="M16 8h4l3 5v4h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-                                    </svg>
-                                }
-                            />
-                        ))}
+                        {services.map((s, i) => <ServiceCard key={i} {...s} />)}
                     </div>
                 </div>
             </section>
 
-            {/* Booking CTA */}
-            <section className={styles.ctaSection}>
+            {/* CTA */}
+            <section className={styles.cta}>
                 <div className="container">
-                    <div className={styles.ctaContent}>
-                        <h2 className={styles.ctaTitle}>Need a Driver Right Away?</h2>
-                        <p className={styles.ctaDesc}>Contact us now and we'll assign a professional driver to you within minutes.</p>
+                    <div className={styles.ctaInner}>
+                        <h2 className={styles.ctaTitle}>Need a Driver Right Now?</h2>
+                        <p className={styles.ctaDesc}>Call us or WhatsApp — we'll assign a driver within minutes. No app needed.</p>
                         <div className={styles.ctaButtons}>
-                            <Link href="/contact" className="btn btn-accent">Book Online</Link>
-                            <a href="tel:+919164544555" className="btn btn-white">Call +91 9164544555</a>
+                            <Link href="/contact" className="btn btn-brand">Book Online</Link>
+                            <a href="https://wa.me/919164544555" target="_blank" rel="noopener noreferrer" className="btn btn-white">WhatsApp Us</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 .accordion {
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
 }
 
@@ -7,8 +7,8 @@
     border-bottom: 1px solid var(--border);
 }
 
-.item:last-child {
-    border-bottom: none;
+.item:first-child {
+    border-top: 1px solid var(--border);
 }
 
 .question {
@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -25,55 +25,49 @@
 }
 
 .questionText {
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     font-weight: 600;
     color: var(--text-primary);
-    transition: color var(--transition-fast);
+    transition: color var(--ease);
 }
 
 .open .questionText {
-    color: var(--primary);
+    color: var(--dark);
 }
 
 .question:hover .questionText {
-    color: var(--primary);
+    color: var(--dark);
 }
 
-.icon {
+.toggle {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    transition: all var(--transition-base);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--text-tertiary);
+    width: 24px;
+    text-align: center;
 }
 
-.open .icon {
-    background: var(--primary);
-    color: var(--text-white);
-    transform: rotate(180deg);
+.open .toggle {
+    color: var(--brand);
 }
 
 .answerWrap {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-base);
+    transition: max-height var(--ease-slow);
 }
 
 .open .answerWrap {
-    max-height: 200px;
+    max-height: 300px;
 }
 
 .answer {
-    padding-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
 }
 
 .answer p {
-    font-size: var(--fs-body);
+    font-size: var(--fs-sm);
     color: var(--text-secondary);
     line-height: 1.7;
 }
