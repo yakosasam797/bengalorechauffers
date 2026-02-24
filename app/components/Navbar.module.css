@@ -1,0 +1,197 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 0;
+    transition: all var(--transition-base);
+    background: transparent;
+}
+
+.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    padding: 10px 0;
+}
+
+.scrolled .logoText .logoName,
+.scrolled .logoText .logoSub {
+    color: var(--primary);
+}
+
+.scrolled .logoIcon {
+    color: var(--primary);
+}
+
+.scrolled .navLink {
+    color: var(--text-primary);
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 101;
+}
+
+.logoIcon {
+    color: var(--accent);
+    transition: color var(--transition-base);
+}
+
+.logoText {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logoName {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+    transition: color var(--transition-base);
+}
+
+.logoSub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color var(--transition-base);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navLink {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.navLink:hover {
+    color: var(--text-white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scrolled .navLink:hover {
+    color: var(--primary);
+    background: rgba(27, 77, 62, 0.06);
+}
+
+.active {
+    color: var(--text-white) !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.scrolled .active {
+    color: var(--primary) !important;
+    background: rgba(27, 77, 62, 0.1);
+}
+
+.navCta {
+    margin-left: 8px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-white);
+    border-radius: 4px;
+    transition: all var(--transition-base);
+}
+
+.scrolled .hamburger span {
+    background: var(--primary);
+}
+
+.hamburgerOpen span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburgerOpen span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .navLinks {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--card-bg);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 100px 32px 40px;
+        gap: 4px;
+        box-shadow: var(--shadow-xl);
+        transition: right var(--transition-base);
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .navLink {
+        color: var(--text-primary);
+        padding: 14px 18px;
+        font-size: 1rem;
+        border-radius: var(--radius-md);
+    }
+
+    .navLink:hover {
+        background: rgba(27, 77, 62, 0.06);
+        color: var(--primary);
+    }
+
+    .active {
+        color: var(--primary) !important;
+        background: rgba(27, 77, 62, 0.08);
+    }
+
+    .navCta {
+        margin-left: 0;
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    .hamburgerOpen span {
+        background: var(--primary) !important;
+    }
+}

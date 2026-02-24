@@ -1,0 +1,97 @@
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.imageWrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-slow);
+}
+
+.card:hover .image {
+    transform: scale(1.08);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(27, 77, 62, 0.6) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: var(--space-md);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.iconBadge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.content {
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.desc {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--primary);
+    transition: all var(--transition-fast);
+}
+
+.cta:hover {
+    color: var(--primary-light);
+    gap: 10px;
+}
+
+.cta svg {
+    transition: transform var(--transition-fast);
+}
+
+.cta:hover svg {
+    transform: translateX(3px);
+}
