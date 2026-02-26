@@ -50,8 +50,8 @@
 }
 
 .ctaDesc {
-    font-size: var(--fs-sm);
-    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--fs-body);
+    color: rgba(255, 255, 255, 0.65);
     margin-bottom: var(--space-xl);
     line-height: 1.65;
 }

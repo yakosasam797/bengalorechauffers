@@ -1,8 +1,16 @@
 import "./globals.css";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-jakarta",
+});
 
 export const metadata = {
   title: "Bangalore Chauffeur | Professional Driver on Hire Services",
@@ -19,12 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={jakarta.variable}>
       <body>
         <Navbar />
         <main>{children}</main>
@@ -34,3 +37,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
