@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import BookingForm from './components/BookingForm';
 import FeatureCard from './components/FeatureCard';
@@ -156,50 +156,118 @@ function StarRating({ rating }) {
 
 export default function Home() {
     const vehicleScroll = useRef(null);
+    const [activeTab, setActiveTab] = useState(0);
+    const autoTimer = useRef(null);
     const scrollVehicles = (dir) => {
         if (vehicleScroll.current) vehicleScroll.current.scrollBy({ left: dir * 330, behavior: 'smooth' });
+    };
+
+    const heroSlides = [
+        {
+            tab: 'Hire a Driver',
+            title: <>Need a <span className={styles.gold}>Driver</span> for<br />Your Car in Bangalore?</>,
+            desc: 'Save time with background-verified drivers for your car. Choose your vehicle type, and enjoy safe, hassle-free rides. Trusted chauffeur service in Bangalore.',
+            cta: 'Hire a Driver →',
+        },
+        {
+            tab: 'Corporate',
+            title: <>Dedicated <span className={styles.gold}>Drivers</span> for<br />Your Business Fleet</>,
+            desc: 'Managed, uniformed, and reliable drivers for 5, 10, or 50+ company vehicles. Custom plans with priority support and corporate billing.',
+            cta: 'Get Fleet Plan →',
+        },
+        {
+            tab: 'Outstation',
+            title: <>Safe <span className={styles.gold}>Outstation</span><br />Drives from Bangalore</>,
+            desc: 'Coorg, Ooty, Mysore, Goa — experienced drivers for long-distance highway trips. Relax while we handle the road.',
+            cta: 'Book Outstation →',
+        },
+    ];
+
+    // Auto-advance slides every 5 seconds
+    useEffect(() => {
+        autoTimer.current = setInterval(() => {
+            setActiveTab(prev => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(autoTimer.current);
+    }, [heroSlides.length]);
+
+    // Manual tab switch — resets the auto timer
+    const switchTab = (i) => {
+        setActiveTab(i);
+        clearInterval(autoTimer.current);
+        autoTimer.current = setInterval(() => {
+            setActiveTab(prev => (prev + 1) % heroSlides.length);
+        }, 5000);
     };
     return (
         <>
             {/* ═══ HERO ═══ */}
             <section className={styles.hero}>
-                <div className={styles.heroBg} style={{ backgroundImage: `url('/hero-bg.jpg')` }}></div>
+                <div className={styles.heroBg} style={{ backgroundImage: `url('/hero -bg 02.jpg')` }}></div>
                 <div className={styles.heroOverlay}></div>
-                <div className={`container ${styles.heroInner}`}>
+
+                <div className={styles.heroInner}>
+                    {/* Left — Text (slides with tabs) */}
                     <div className={styles.heroText}>
-                        <div className={styles.heroBadge}>
-                            <span className={styles.dot}></span>
-                            50,000+ Happy Customers
+                        <div className={styles.heroSlideWrap}>
+                            {heroSlides.map((slide, i) => (
+                                <div key={i} className={`${styles.heroSlide} ${i === activeTab ? styles.heroSlideActive : ''}`}>
+                                    <h1 className={styles.heroTitle}>
+                                        {slide.title}
+                                    </h1>
+                                    <p className={styles.heroDesc}>
+                                        {slide.desc}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
-                        <h1 className={styles.heroTitle}>
-                            Need a Driver?<br />
-                            <span className={styles.gold}>We'll Send One in Minutes.</span>
-                        </h1>
-                        <p className={styles.heroDesc}>
-                            Professional, background-verified drivers for your car —
-                            daily commute, road trips, or corporate fleets. Bangalore's #1 chauffeur service.
-                        </p>
-                        <a href="https://wa.me/919164544555" target="_blank" rel="noopener noreferrer" className={styles.heroWhatsapp}>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
-                            WhatsApp Us
+                        <a href="tel:+919164544555" className={styles.heroPhone}>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                            +91 91645 44555
                         </a>
-                        <div className={styles.heroTrust}>
-                            <div className={styles.trustItem}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-                                Licensed
-                            </div>
-                            <div className={styles.trustItem}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-                                Verified
-                            </div>
-                            <div className={styles.trustItem}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-                                24/7
-                            </div>
+                        <div className={styles.heroDots}>
+                            {heroSlides.map((_, i) => (
+                                <span key={i} className={`${styles.heroDot} ${i === activeTab ? styles.heroDotActive : ''}`} onClick={() => switchTab(i)} />
+                            ))}
                         </div>
                     </div>
-                    <div className={styles.heroForm}>
-                        <BookingForm compact />
+
+                    {/* Right — Form */}
+                    <div className={styles.heroFormCol}>
+                        <div className={styles.heroTabs}>
+                            {heroSlides.map((slide, i) => (
+                                <span key={i} className={`${styles.heroTab} ${i === activeTab ? styles.heroTabActive : ''}`} onClick={() => switchTab(i)}>
+                                    {slide.tab}
+                                </span>
+                            ))}
+                        </div>
+                        <div className={styles.heroFormCard}>
+                            <div className={styles.socialProof}>
+                                <div className={styles.avatarStack}>
+                                    <span className={styles.miniAvatar} style={{ background: '#F7C948' }}>P</span>
+                                    <span className={styles.miniAvatar} style={{ background: '#4A90D9' }}>R</span>
+                                    <span className={styles.miniAvatar} style={{ background: '#E5654F' }}>A</span>
+                                </div>
+                                <span className={styles.socialProofText}>50,000+ customers already trust us</span>
+                            </div>
+                            <form className={styles.heroForm} onSubmit={(e) => { e.preventDefault(); window.open('https://wa.me/919164544555?text=' + encodeURIComponent('Hi, I need a driver.'), '_blank'); }}>
+                                <div className={styles.heroFormRow}>
+                                    <input type="text" placeholder="Name" className={styles.heroInput} required />
+                                    <input type="tel" placeholder="Mobile Number" className={styles.heroInput} required />
+                                </div>
+                                <select className={styles.heroInput} required defaultValue="">
+                                    <option value="" disabled>Select Service</option>
+                                    <option value="Hatchback">Hatchback Driver</option>
+                                    <option value="Sedan">Sedan Driver</option>
+                                    <option value="SUV">SUV Driver</option>
+                                    <option value="Luxury">Luxury Car</option>
+                                    <option value="Outstation">Outstation Trip</option>
+                                </select>
+                                <button type="submit" className={styles.heroSubmit}>
+                                    {heroSlides[activeTab].cta}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -216,33 +284,26 @@ export default function Home() {
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
                         <div className={styles.serviceCatGrid}>
-                            {/* Card 1 — Personal Driver */}
                             <Link href="/contact" className={styles.serviceCatCard}>
                                 <div className={styles.serviceCatBg} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1550355291-bbee04a92027?w=900&q=80')` }}></div>
                                 <div className={styles.serviceCatOverlay}></div>
                                 <div className={styles.serviceCatContent}>
                                     <span className={styles.serviceCatLabel}>For Individuals</span>
                                     <h2 className={styles.serviceCatTitle}>Need a Driver?</h2>
-                                    <p className={styles.serviceCatDesc}>
-                                        Book a professional, background-verified chauffeur for your personal car — hourly, full day, or monthly.
-                                    </p>
+                                    <p className={styles.serviceCatDesc}>Book a professional, background-verified chauffeur for your personal car — hourly, full day, or monthly.</p>
                                     <span className={styles.serviceCatCta}>
                                         Book a Driver
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                     </span>
                                 </div>
                             </Link>
-
-                            {/* Card 2 — Corporate Fleet */}
                             <Link href="/contact" className={`${styles.serviceCatCard} ${styles.serviceCatCardDark}`}>
                                 <div className={styles.serviceCatBg} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=80')` }}></div>
                                 <div className={styles.serviceCatOverlay}></div>
                                 <div className={styles.serviceCatContent}>
                                     <span className={styles.serviceCatLabel}>For Corporates</span>
                                     <h2 className={styles.serviceCatTitle}>Corporate Fleet?</h2>
-                                    <p className={styles.serviceCatDesc}>
-                                        Dedicated drivers for your entire fleet — 5, 10, or 50+ vehicles. Managed, uniformed, and reliable.
-                                    </p>
+                                    <p className={styles.serviceCatDesc}>Dedicated drivers for your entire fleet — 5, 10, or 50+ vehicles. Managed, uniformed, and reliable.</p>
                                     <span className={styles.serviceCatCta}>
                                         Get Fleet Plan
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -254,7 +315,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ VEHICLE SELECTION — Horizontal Scroll (Image 1 style) ═══ */}
+            {/* ═══ VEHICLE SELECTION — Horizontal Scroll ═══ */}
             <section className={styles.vehicleSection}>
                 <div className="container">
                     <div className={styles.vehicleHeader}>
@@ -279,7 +340,7 @@ export default function Home() {
                                     <div className={styles.vehicleCardTop}>
                                         <h3 className={styles.vehicleCardTitle}>{v.title}</h3>
                                         <span className={styles.vehicleCardArrow}>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M7 7h10v10" /></svg>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                         </span>
                                     </div>
                                     <div className={styles.vehicleCardImageWrap}>
@@ -296,7 +357,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ STATS — right after vehicle section ═══ */}
+            {/* ═══ STATS ═══ */}
             <section className={styles.statsSection}>
                 <div className={styles.statsPattern}></div>
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -304,7 +365,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ CTA BANNER — Contained Rounded Card ═══ */}
+            {/* ═══ CTA BANNER ═══ */}
             <section className={styles.ctaBannerSection}>
                 <div className="container">
                     <ScrollReveal>
@@ -326,7 +387,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ═══ HOW IT WORKS — Two Column (Image 2 layout) ═══ */}
+            {/* ═══ HOW IT WORKS ═══ */}
             <section className={styles.howSection}>
                 <div className="container">
                     <div className={styles.howLayout}>
@@ -360,8 +421,8 @@ export default function Home() {
                     <ScrollReveal>
                         <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
                             <span className="section-label">Why Us</span>
-                            <h2 className="section-title">We Don't Cut Corners<br />on Safety</h2>
-                            <p className="section-subtitle" style={{ maxWidth: '520px', margin: '0 auto' }}>Every driver goes through a 4-step verification before they ever sit in your car.</p>
+                            <h2 className="section-title" style={{ color: '#fff' }}>We Don't Cut Corners<br />on Safety</h2>
+                            <p className="section-subtitle" style={{ maxWidth: '520px', margin: '0 auto', color: 'rgba(255,255,255,0.45)' }}>Every driver goes through a 4-step verification before they ever sit in your car.</p>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={80}>
@@ -412,7 +473,7 @@ export default function Home() {
             </section>
 
             {/* ═══ TESTIMONIALS ═══ */}
-            <section className="section">
+            <section className="section-alt">
                 <div className="container">
                     <ScrollReveal>
                         <div style={{ marginBottom: 'var(--space-2xl)' }}>
@@ -457,7 +518,8 @@ export default function Home() {
 
             {/* ═══ CTA ═══ */}
             <section className={styles.cta}>
-                <div className={`container ${styles.ctaInner}`}>
+                <div className={styles.ctaPattern}></div>
+                <div className={`container ${styles.ctaInner}`} style={{ position: 'relative', zIndex: 1 }}>
                     <h2 className={styles.ctaTitle}>Ready? Book Your Driver Now.</h2>
                     <p className={styles.ctaDesc}>Takes 30 seconds. No app needed. Just tell us and go.</p>
                     <div className={styles.ctaBtns}>

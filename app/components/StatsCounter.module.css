@@ -46,6 +46,7 @@
 .cta:hover {
     border-color: rgba(255, 255, 255, 0.35);
     background: rgba(255, 255, 255, 0.05);
+    gap: 10px;
 }
 
 .grid {
@@ -57,27 +58,36 @@
 .stat {
     display: flex;
     flex-direction: column;
+    padding-left: var(--space-xl);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat:first-child {
+    padding-left: 0;
+    border-left: none;
 }
 
 .number {
     font-size: 2rem;
     font-weight: 800;
     color: var(--text-white);
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
     line-height: 1;
     margin-bottom: var(--space-xs);
+    font-feature-settings: 'tnum';
 }
 
 .label {
     font-size: var(--fs-sm);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-white);
     margin-bottom: 4px;
+    letter-spacing: 0.2px;
 }
 
 .desc {
     font-size: var(--fs-xs);
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
     line-height: 1.6;
 }
 

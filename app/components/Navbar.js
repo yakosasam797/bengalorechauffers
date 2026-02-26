@@ -35,6 +35,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10);
+        handleScroll();
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -54,7 +55,7 @@ export default function Navbar() {
             <div className={`container ${styles.inner}`}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
-                    <span className={styles.logoMark}>BC</span>
+                    <img src="/logo.png" alt="Bengaluru Chauffeurs Logo" className={styles.logoImg} />
                     <div className={styles.logoTextWrap}>
                         <span className={styles.logoName}>Bengaluru</span>
                         <span className={styles.logoSub}>Chauffeurs</span>

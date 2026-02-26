@@ -40,10 +40,10 @@ export default function FeatureCard({ title, description, number }) {
 
     return (
         <div className={styles.card}>
-            <div className={styles.iconWrap}>
+            <div className={styles.icon}>
                 {icon}
             </div>
-            {number && <span className={styles.number}>{number}</span>}
+            {number && <span className={styles.num}>{number}</span>}
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.desc}>{description}</p>
         </div>

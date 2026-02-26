@@ -74,7 +74,7 @@
   --ease-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout */
-  --max-width: 1160px;
+  --max-width: 1320px;
   --nav-height: 64px;
 }
 
@@ -178,12 +178,12 @@ textarea {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--space-md);
 }
 
 @media (min-width: 768px) {
   .container {
-    padding: 0 var(--space-xl);
+    padding: 0 var(--space-lg);
   }
 }
 

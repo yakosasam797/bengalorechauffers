@@ -1,11 +1,15 @@
 /* BookingForm — premium glassmorphism design */
 .form {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(32px) saturate(1.2);
+    -webkit-backdrop-filter: blur(32px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-lg);
     padding: var(--space-2xl);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(247, 201, 72, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .header {
@@ -14,14 +18,14 @@
     gap: var(--space-sm);
     margin-bottom: var(--space-xl);
     padding-bottom: var(--space-lg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .headerIcon {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: rgba(247, 201, 72, 0.12);
+    background: rgba(247, 201, 72, 0.15);
     color: var(--brand);
     display: flex;
     align-items: center;
@@ -37,7 +41,7 @@
 
 .subtitle {
     font-size: var(--fs-xs);
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
     margin-top: 2px;
 }
 
@@ -50,13 +54,13 @@
 .field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .label {
     font-size: var(--fs-xs);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.3px;
 }
 
@@ -69,15 +73,15 @@
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.35);
     pointer-events: none;
 }
 
 .input {
     width: 100%;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     color: var(--text-white);
     font-size: var(--fs-sm);
@@ -88,14 +92,14 @@
 }
 
 .input::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .input:focus {
     outline: none;
     border-color: var(--brand);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.08);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.1);
 }
 
 select.input {
@@ -116,7 +120,7 @@ select.input option {
 .submit {
     width: 100%;
     margin-top: var(--space-lg);
-    padding: 14px;
+    padding: 15px;
     background: var(--brand);
     color: var(--dark);
     border: none;
@@ -130,12 +134,13 @@ select.input option {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    letter-spacing: 0.2px;
 }
 
 .submit:hover {
     background: var(--brand-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(247, 201, 72, 0.25);
+    box-shadow: 0 6px 24px rgba(247, 201, 72, 0.3);
 }
 
 .disclaimer {
@@ -145,7 +150,7 @@ select.input option {
     gap: 6px;
     margin-top: var(--space-md);
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 /* Compact — only shown in hero, fewer fields */
@@ -159,6 +164,7 @@ select.input option {
     background: var(--white);
     border: 1px solid var(--border);
     backdrop-filter: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(247, 201, 72, 0.05);
 }
 
 .light .title {
@@ -200,4 +206,42 @@ select.input option {
 
 .light .disclaimer {
     color: var(--text-tertiary);
+}
+
+/* Compact + Light combined — hero form: no header, tighter spacing */
+.compact.light {
+    padding: var(--space-lg) var(--space-xl);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.compact.light .header {
+    display: none;
+}
+
+.compact.light .fields {
+    gap: var(--space-sm);
+}
+
+.compact.light .input {
+    padding: 10px 14px;
+    font-size: var(--fs-xs);
+}
+
+.compact.light .label {
+    font-size: 0.7rem;
+    margin-bottom: 0;
+}
+
+.compact.light .submit {
+    margin-top: var(--space-sm);
+    padding: 12px;
+    font-size: var(--fs-sm);
+}
+
+.compact.light .disclaimer {
+    margin-top: var(--space-xs);
+    font-size: 0.65rem;
 }

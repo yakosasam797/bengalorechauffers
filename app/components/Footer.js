@@ -7,7 +7,7 @@ export default function Footer() {
             <div className={`container ${styles.grid}`}>
                 <div className={styles.brand}>
                     <div className={styles.logoRow}>
-                        <span className={styles.logoMark}>BC</span>
+                        <img src="/logo.png" alt="Bengaluru Chauffeurs Logo" className={styles.logoImg} />
                         <div className={styles.logoText}>
                             <span className={styles.logoName}>Bengaluru</span>
                             <span className={styles.logoSub}>Chauffeurs</span>
